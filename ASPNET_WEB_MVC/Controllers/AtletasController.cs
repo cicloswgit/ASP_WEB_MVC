@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASPNET_WEB_MVC.Models;
+using System.Web.UI.WebControls;
 
 namespace ASPNET_WEB_MVC.Controllers
 {
@@ -14,19 +15,31 @@ namespace ASPNET_WEB_MVC.Controllers
     {
         private ASPNET_WEB_MVCContext db = new ASPNET_WEB_MVCContext();
 
-
+        /**detalha o atleta listado na tabela de banco de dados*/
         public ViewResult DetalharAtleta(int id)
         {
-            Atleta atleta = null;
-
-            if (id != 0)
+            if (id!= 0)
             {
-                atleta = db.Atletas.Find(id);
+                //retorna uma instância do atleta cadastrado no banco de dados
+                return View(db.Atletas.Find(id));
             }
 
-            if (atleta != null) return View(atleta);
             return new ViewResult();
         }
+
+
+        //public ViewResult DetalharAtleta(int id)
+        //{
+        //    Atleta atleta = null;
+
+        //    if (id != 0)
+        //    {
+        //        atleta = db.Atletas.Find(id);
+        //    }
+
+        //    if (atleta != null) return View(atleta);
+        //    return new ViewResult();
+        //}
 
         // GET: Atletas
         public ActionResult Index()
